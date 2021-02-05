@@ -1,0 +1,68 @@
+﻿@model appweb.Models.sifreModel
+
+@{
+    var sifre = ViewBag.sifre;
+    var kirmizi = ViewBag.kirmizi;
+    var sifre2 = ViewBag.sifre2;
+}
+
+<meta name="viewport" content="width=device-width" />
+
+
+@using (Html.BeginForm("SifreGir", "Home", FormMethod.Post))
+{
+<center>
+    <table cellpadding="2" cellspacing="2">
+        <tr>
+            <th colspan="2" align="center"> ARAÇ ŞİFRESİNİ GİRİNİZ<br /> </th>
+        </tr>
+        <tr>
+            <td> ŞİFRE: </td>
+            <td>
+                @Html.TextBoxFor(m => m.sifreId) <br />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(sifre2))
+                {
+                    <div class="alert alert-dark" role="alert">
+                        <b> @sifre2 </b>
+                    </div>
+                }
+            </td>
+            <td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(sifre))
+                {
+                    <div class="alert alert-light" role="alert">
+                        <b> @sifre </b>
+                    </div>
+                    <table cellpadding="3" cellspacing="6">
+                        <tr>
+                            <td></td>
+                            <td><a href="@Url.Action("Yesil")" class="btn btn-outline-success" role="button"> HAREKETE İZİN VER</a></td>
+                            <td>
+                                <a href="@Url.Action("Kırmızı")" class="btn btn-outline-danger" role="button"> HAREKETE İZİN VERME </a>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+
+                    </table>
+                   
+                }
+            </td>
+        </tr>
+
+    </table>
+</center>
+}
+

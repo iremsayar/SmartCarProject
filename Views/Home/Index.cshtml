@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var btnDurumu = ViewBag.btnDurumu;
+    var sensorDurumu = ViewBag.sensorDurumu;
+    var alarm = ViewBag.alarm;
+    var alarmDurumu1 = ViewBag.alarmdurumu1;
+    var sifre = ViewBag.sifre;
+    var yesil = ViewBag.yesil;
+    var dht = ViewBag.dht;
+}
+
+
+<center>
+    <div class="alert alert-light" role="alert">
+        <b> SWEET CAR'I ÇALIŞTIRMAK İÇİN ŞİFRE GİRMELİSİNİZ...</b>
+    </div>
+
+    <a href="@Url.Action("SifreGir")" class="btn btn-outline-dark" role="button"> SİFRE GİR</a>
+
+</center>
+
+@if (!string.IsNullOrEmpty(yesil))
+{
+
+    <meta http-equiv="refresh" content="2">
+
+    <br />
+    <br />
+    <center>
+        <div>
+
+            @*<a href="@Url.Action(" Forward")" class="btn btn-success" role="button">FORWARD</a>
+                <a href="@Url.Action(" Backward")" class="btn btn-danger" role="button">BACKWARD</a>*@
+
+            <table cellpadding="5" cellspacing="4">
+                <tr>
+                    <td> </td>
+                    <td> <a href="@Url.Action("Forward")" class="btn btn-success" role="button">İLERİ</a> </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+
+                    <td> <a href="@Url.Action("Left")" class="btn btn-success" role="button">SOL</a> </td>
+                    <td> <a href="@Url.Action("Stop")" class="btn btn-danger" role="button"> DUR</a>  </td>
+                    <td><a href="@Url.Action("Right")" class="btn btn-success" role="button">SAĞ</a> </td>
+
+                </tr>
+
+                <tr>
+                    <td> </td>
+                    <td> <a href="@Url.Action("Backward")" class="btn btn-success" role="button">GERİ</a>  </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(btnDurumu))
+                        {
+                            <div class="alert alert-success" role="alert">
+                                <b>Bilgi:</b> @btnDurumu
+                            </div>
+                        }
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+    </center>
+    <br />
+    <right>
+        <table cellpadding="5" cellspacing="4">
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(dht))
+                    {
+                        <div class="alert alert-secondary" role="alert">
+                            <b>Bilgi:</b> @dht
+                        </div>
+                        <br />
+                        <a href="@Url.Action("fanOn")" class="btn btn-outline-secondary" role="button">KLİMA ÇALIŞTIR</a>
+                        <a href="@Url.Action("fanOff")" class="btn btn-outline-secondary" role="button">KLİMA DURDUR</a>
+                    }
+                </td>
+            </tr>
+        </table>
+    </right>
+
+    <br />
+    <br />
+    <center>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-warning" role="alert">
+                <b>Bilgi:</b> @ViewBag.Message
+            </div>
+            <br />
+            <table cellpadding="5" cellspacing="5">
+                <tr>
+                    <td> <a href="@Url.Action("DontStop")" class="btn btn-outline-warning" role="button"> DEVAM ET</a> </td>
+                    <td> <a href="@Url.Action("PleaseStop")" class="btn btn-outline-warning" role="button"> DURDUR </a> </td>
+                </tr>
+            </table>
+        }
+    </center>
+    <br />
+    <left>
+        <table cellpadding="5" cellspacing="4">
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(alarmDurumu1))
+                    {
+
+                        <div class="alert alert-info" role="alert">
+                            <b> @alarmDurumu1</b>
+                        </div>
+                    }
+                </td>
+                <td> <a href="@Url.Action("HirsizAlarm")" class="btn btn-info" role="button"> HIRSIZ ALARMINI AKTİF ET!</a> </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(alarm))
+                    {
+
+                        <div class="alert alert-info" role="alert">
+                            <b> @alarm</b>
+                        </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><a href="@Url.Action("BuzzerOff")" class="btn btn-info" role="button"> ALARMI KAPAT</a></td>
+                <td>
+                    <a href="@Url.Action("BuzzerOn")" class="btn btn-info" role="button"> ALARMI ÇAL</a>
+                </td>
+            </tr>
+
+        </table>
+    </left>
+
+}
+
+
